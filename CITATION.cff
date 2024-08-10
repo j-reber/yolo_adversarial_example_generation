@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it using the information below.
+title: Adversarial Example Generation for YOLOv8 Models
+authors:
+  - family-names: Reber
+    given-names: Johannes
+    affiliation: Karlsruhe Institute of Technology (KIT)
+version: 1.0.0
+url: https://github.com/j-reber/yolo_adversarial_example_generation
+date-released: 2024-08-10
