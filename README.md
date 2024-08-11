@@ -7,11 +7,11 @@ To make the repository work follow these steps.
 git clone https://github.com/j-reber/yolo_adversarial_example_generation.git
 ```
 ```
-python -m venv venv \\
+python3 -m venv venv \\
 source venv/bin/activate
 ```
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 ## Usage
 ```
