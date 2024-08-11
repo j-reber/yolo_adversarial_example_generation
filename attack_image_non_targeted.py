@@ -9,7 +9,7 @@ import argparse
 import cv2
 
 
-def main(model_path, image_path, output_path, gamma, max_iter, save_perturbation, save_adv_image):
+def main(model_path, image_path, output_path, gamma, max_iter, save_perturbation, save_adv_image, seed):
     model = YOLO(model_path)
     im = cv2.imread(image_path)
     t = transforms.Compose([
@@ -50,7 +50,7 @@ def main(model_path, image_path, output_path, gamma, max_iter, save_perturbation
     }
 
     # Setup adversarial labels
-    # torch.manual_seed(42)
+    torch.manual_seed(seed)
     adv_cls_labels = torch.randint(0, nc, (number_of_instances,)).to(device)
     adv_labels = {
         "batch_idx": torch.arange(number_of_instances).to(device),  # Generating an index tensor
@@ -121,10 +121,12 @@ if __name__ == '__main__':
                         help='Set the hyperparameter gamma for gradient normalization.')
     parser.add_argument('--max_iter', type=int, required=False, default=150,
                         help='Set the maximum iterations for the DAG algorithm.')
+    parser.add_argument('--seed', type=int, required=False, default=42,
+                        help='Set a seed to choose the adversarial labels.')
     parser.add_argument('--save_perturbation', type=str, required=False, default=None,
                         help='Path to the save location of the perturbation, None for not saving.')
     parser.add_argument('--save_adv_image', type=str, required=False, default=None,
                         help='Path to the save location of the adversarial image, None for not saving.')
     args = parser.parse_args()
     main(args.model, args.image_path, args.output_path, args.gamma, args.max_iter, args.save_perturbation,
-         args.save_adv_image)
+         args.save_adv_image, args.seed)
