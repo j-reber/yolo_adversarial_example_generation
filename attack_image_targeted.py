@@ -52,6 +52,8 @@ def main(model_path, image_path, output_path, gamma, max_iter, save_perturbation
     # Setup adversarial labels
     torch.manual_seed(seed)
     adv_cls_labels = torch.randint(0, nc, (number_of_instances,)).to(device)
+    for i in range(adv_cls_labels.shape[0]):
+        print(initial_results.names[adv_cls_labels[i].item()])
     adv_labels = {
         "batch_idx": torch.arange(number_of_instances).to(device),  # Generating an index tensor
         "cls": adv_cls_labels.view(-1, 1),  # Reshaping to match expected dimensions
@@ -81,7 +83,7 @@ def main(model_path, image_path, output_path, gamma, max_iter, save_perturbation
             # Normalize grad
             perturbation = (gamma / image_grad.norm(float("inf"))) * image_grad
             perturbation += perturbation
-            img_tensor += perturbation
+            img_tensor += 0.01 * perturbation
 
         # Zero Gradients (really necessary?)
         image_grad.zero_()
