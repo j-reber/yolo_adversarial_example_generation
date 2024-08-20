@@ -125,7 +125,7 @@ if __name__ == '__main__':
                         help='Path to the trained YOLOv8 model file (e.g., yolov8l.pt or /path/to/best.pt).')
     parser.add_argument('--image_path', type=str, required=False, default='test_data/johannes_lukas.jpg',
                         help='Path to the image to create adversarial examples from.')
-    parser.add_argument('--output_path', type=str, required=False, default='test_data/adv_nothing.jpg',
+    parser.add_argument('--output_path', type=str, required=False, default='test_data/result_untargeted.jpg',
                         help='Path to the save location of the image.')
     parser.add_argument('--gamma', type=float, required=False, default=0.5,
                         help='Set the hyperparameter gamma for gradient normalization.')
