@@ -106,9 +106,9 @@ def main(model_path, image_path, output_path, gamma, max_iter, save_perturbation
         perturbation_img = (perturbation_img * 255).astype(np.uint8)
         perturbation_img = np.transpose(perturbation_img, (1, 2, 0))
         cv2.imwrite(save_perturbation, perturbation_img)
-
-    final_res = model.predict(img_tensor)
-    final_res[0].save(filename=output_path)
+    if output_path is not None:
+        final_res = model.predict(img_tensor)
+        final_res[0].save(filename=output_path)
 
 
 if __name__ == '__main__':
@@ -118,7 +118,7 @@ if __name__ == '__main__':
     parser.add_argument('--image_path', type=str, required=False, default='test_data/johannes_lukas.jpg',
                         help='Path to the image to create adversarial examples from.')
     parser.add_argument('--output_path', type=str, required=False, default='test_data/result_targeted.jpg',
-                        help='Path to the save location of the image.')
+                        help='Path to the save location of the image. None for not saving.')
     parser.add_argument('--gamma', type=float, required=False, default=0.5,
                         help='Set the hyperparameter gamma for gradient normalization.')
     parser.add_argument('--max_iter', type=int, required=False, default=150,
