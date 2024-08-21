@@ -37,7 +37,7 @@ class BaseAttacker(ABC):
     def save_adv_image(self, data, output_path):
         if output_path is not None:
             self.torch_model.eval()
-            adv_img =data.detach().numpy()[0]
+            adv_img = data.detach().numpy()[0]
             adv_img = (adv_img * 255).astype(np.uint8)
             adv_img = np.transpose(adv_img, (1, 2, 0))
             cv2.imwrite(output_path, adv_img)
@@ -143,7 +143,6 @@ class TargetedAttacker(BaseAttacker):
 def main(model_path, image_path, output_path, gamma, max_iter, save_perturbation, save_adv_image, seed, save_label):
     attacker = TargetedAttacker(model_path, gamma, max_iter, seed)
     im, per = attacker.attack_image(image_path)
-    print(output_path)
     attacker.save_result(im, output_path)
     attacker.save_perturbation(per, save_perturbation)
     attacker.save_adv_image(im, save_adv_image)
@@ -158,7 +157,7 @@ if __name__ == '__main__':
     parser.add_argument('--image_path', type=str, required=False, default='test_data/johannes_lukas.jpg',
                         help='Path to the image to create adversarial examples from.')
     parser.add_argument('--output_path', type=str, required=False, default=None,
-                        help='Path to the save location of the image. None for not saving.')
+                        help='Path to the save location of the image. Do not specify for not saving.')
     parser.add_argument('--gamma', type=float, required=False, default=0.01,
                         help='Set the hyperparameter gamma for gradient normalization.')
     parser.add_argument('--max_iter', type=int, required=False, default=60,
@@ -166,11 +165,11 @@ if __name__ == '__main__':
     parser.add_argument('--seed', type=int, required=False, default=42,
                         help='Set a seed to choose the adversarial labels.')
     parser.add_argument('--save_perturbation', type=str, required=False, default=None,
-                        help='Path to the save location of the perturbation, None for not saving.')
+                        help='Path to the save location of the perturbation. Do not specify for not saving.')
     parser.add_argument('--save_adv_image', type=str, required=False, default=None,
-                        help='Path to the save location of the adversarial image, None for not saving.')
+                        help='Path to the save location of the adversarial image. Do not specify for not saving.')
     parser.add_argument('--save_label', type=str, required=False, default=None,
-                        help='Path to the save location of the Label, None for not saving.')
+                        help='Path to the save location of the Label. Do not specify for not saving.')
     args = parser.parse_args()
     main(args.model, args.image_path, args.output_path, args.gamma, args.max_iter, args.save_perturbation,
          args.save_adv_image, args.seed, args.save_label)
