@@ -1,6 +1,4 @@
-import numpy as np
 from tqdm import tqdm
-from ultralytics import YOLO
 from ultralytics.utils.loss import v8DetectionLoss
 import torch
 from torchvision import transforms
