@@ -1,34 +1,27 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "yolo_adversarial_example_generation"
+name = "yolo-adversarial-example-generation"
 version = "0.1.0"
-description = "A project to generate adversarial examples using YOLO."
+description = "Adversarial example generation for YOLO object detection models."
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
-    { name = "J Reber"}
+    { name = "J. Reber" }
 ]
-requires-python = ">=3.7"
-keywords = ["YOLO", "adversarial examples", "deep learning", "computer vision"]
-classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Topic :: Software Development :: Libraries :: Python Modules"
-]
-
-project.dependencies=[
-torch = ">=1.7.1"
-numpy = ">=1.19.2"
-matplotlib = ">=3.3.2"
-opencv-python = ">=4.4.0.44"
-tqdm = ">=4.50.2"
+requires-python = ">=3.6"
+dependencies = [
+    "torch>=1.5.0",
+    "numpy>=1.18.5",
+    "opencv-python>=4.2.0.34",
+    "matplotlib>=3.2.2",
+    "scipy>=1.4.1",
+    "Pillow>=7.1.2",
+    "tqdm>=4.46.0"
 ]
 
 [tool.black]
 line-length = 88
-target-version = ['py37']
+target-version = ["py36"]
