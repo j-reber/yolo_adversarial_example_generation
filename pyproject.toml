@@ -9,7 +9,7 @@ description = "A project to generate adversarial examples using YOLO."
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
-    { name = "J Reber", email = "[email protected]" }
+    { name = "J Reber"}
 ]
 requires-python = ">=3.7"
 keywords = ["YOLO", "adversarial examples", "deep learning", "computer vision"]
