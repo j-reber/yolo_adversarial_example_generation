@@ -5,7 +5,7 @@ from torchvision import transforms
 from types import SimpleNamespace
 import argparse
 import cv2
-from attack_image_targeted import BaseAttacker
+from yolo_adversarial_example_generation.attack_image_targeted import BaseAttacker
 
 class UntargetedAttacker(BaseAttacker):
     def __init__(self, model_path, gamma=0.01, max_iter=60):
