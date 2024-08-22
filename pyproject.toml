@@ -25,3 +25,6 @@ dependencies = [
 [tool.black]
 line-length = 88
 target-version = ["py36"]
+
+[tool.setuptools]
+py-modules = []
